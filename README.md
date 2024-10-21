@@ -20,8 +20,7 @@ A continuación, se conectó a la instancia EC2 utilizando SSH:
 ssh -i /path/to/llave.pem ubuntu@<IP_de_la_instancia>
 ```
 
-#### Captura de pantalla:
-*Conexión exitosa a la instancia EC2 vía SSH.*
+![Conexión exitosa a la instancia EC2 vía SSH.](conexion.png)
 
 ---
 
@@ -45,9 +44,6 @@ pip install "dvc[s3]"
 
 Se verificó la instalación de Git para manejar el versionado de los archivos.
 
-#### Captura de pantalla:
-*Instalación de DVC y dependencias.*
-
 ---
 
 ### 3. Creación del proyecto con DVC
@@ -69,9 +65,7 @@ mkdir -p data
 curl https://gist.githubusercontent.com/netj/8836201/raw/6f9306ad21398ea43cba4f7d537619d0e07d5ae3/iris.csv -o data/data.csv
 dvc add data/data.csv
 ```
-
-#### Captura de pantalla:
-*Comandos ejecutados y estructura de carpetas después de agregar el dataset a DVC.*
+![Comandos ejecutados y estructura de carpetas después de agregar el dataset a DVC.](files_bash.png)
 
 ---
 
@@ -83,9 +77,7 @@ Se creó un repositorio remoto en GitHub y se vinculó el proyecto local:
 git remote add origin https://github.com/usuario/nombre_repo.git
 git push -u origin main
 ```
-
-#### Captura de pantalla:
-*Repositorio GitHub con el archivo `.csv.dvc` incluido.*
+![Repositorio GitHub con el archivo .csv.dvc](files_github.png)
 
 ---
 
@@ -106,9 +98,7 @@ aws s3 mb s3://nombre-dvcstore
 dvc remote add -d aws-remote s3://nombre-dvcstore
 dvc push
 ```
-
-#### Captura de pantalla:
-*Archivo `.dvc/config` mostrando la configuración de los remotes local y S3.*
+![Archivo .dvc/config mostrando la configuracion de los remotes local y S3](dvc-s3-config.png)
 
 ---
 
@@ -129,14 +119,20 @@ Finalmente, se agregó esta nueva versión al repositorio Git:
 git commit -m "Dataset actualizado"
 ```
 
+![Identificador md5 del archivo .csv](md5-file.png)
+![hay 2 objetos dentro de la carpeta files/md5/
+en su bucket de S3 (los identificadores de las versiones creadas).](s3-files.png)
+![Repositorio clonado correctamente en otra carpeta](dvc-other-github.png)
+
 ---
+
 
 ### Conclusión
 
 Este taller permitió conocer el uso de **DVC** para gestionar y versionar datasets y modelos de machine learning de manera eficiente. Se exploraron las conexiones locales y con S3 como almacenamiento remoto, y se comprendió cómo DVC ayuda a gestionar grandes volúmenes de datos mientras se mantiene un control de versiones claro.
 
-#### Captura de pantalla:
-*Listado de archivos en el bucket S3 mostrando los datos versionados por DVC.*
+Adicionalmente se realiza el trabajo de checkout
+![realizando una exploración de los comandos anteriores](github-checkout.png)
 
 ---
 
